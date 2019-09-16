@@ -1,3 +1,6 @@
+# Location Files
+*.json
+
 # Private Directories & Files
 env/
 .env
