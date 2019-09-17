@@ -28,10 +28,13 @@ def get_closest_locations(map_id: str, locations: List, data: Dict):
     sorted_distances = sorted(distances, key=lambda d: d[0])
 
     # Adding distance to locations
+    index_counter = 0
     for sd in sorted_distances:
         distance = sd[0]
         location = sd[1]
         location['distance'] = round(distance, sig_figs)
+        location['index'] = index_counter
+        index_counter += 1
 
     closest_location = sorted_distances[0]
     zoom_level = Location.best_zoom_level(closest_location[0])

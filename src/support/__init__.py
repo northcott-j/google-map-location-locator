@@ -1,2 +1,2 @@
-from .google.google_utils import google_location_search, google_location_details
+from .google.google_utils import google_location_search, google_location_details, download_location_collection
 from .route.route_decorators import check_map_id, inject_request_body, inject_location_collection

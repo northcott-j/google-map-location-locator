@@ -36,8 +36,8 @@ class Location:
         return Location(**location_details)
 
     @classmethod
-    def load_locations_from_collection(cls, map_id):
-        location_json = load_collection(map_id)
+    def load_locations_from_collection(cls, map_id, file_id=None):
+        location_json = load_collection(map_id, file_id=file_id)
         locations = [Location(**details) for loc_id, details in location_json.items()]
         return locations
 

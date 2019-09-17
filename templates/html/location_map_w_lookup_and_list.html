@@ -1,15 +1,18 @@
 <html>
   <head>
     <link rel="stylesheet" href="../css/location_list_styles.css"></link>
+    <link rel="stylesheet" href="../css/location_map_w_list_styles.css"></link>
     <script type="text/javascript" src="../js/.env.js"></script>
     <script type="text/javascript" src="../js/location_map_utils.js"></script>
     <script type="text/javascript" src="../js/location_list_utils.js"></script>
   </head>
   <body>
-    <input id="pac-input" style="width: 640px;" class="controls" type="text" placeholder="Search Box">
-    <iframe id="locationMap" style="display: block;" width="640" height="480"></iframe>
-    <div id="locationList"></div>
-    <div style="width: 640px; height: 480px; position: absolute; left: -10000px;" id="map"></div>
+    <div id="locationsContainer">
+      <input id="pac-input" class="controls width-sync" type="text" placeholder="Search Box">
+      <iframe id="locationMap" class="width-sync height-sync" style="display: block;"></iframe>
+      <div id="locationList" class="width-sync"></div>
+      <div class="width-sync height-sync" style="position: absolute; left: -10000px;" id="map"></div>
+    </div>
     <script>
       function initAutocomplete() {
         // Initializes the map centered on location specified in .env.js
