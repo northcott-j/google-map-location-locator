@@ -1,7 +1,9 @@
 function makeLocationHtml(location) {
   var contactHtml = makeContactHtml(location);
   var directionsHtml = makeDirectionsHtml(location);
-  var locationHtml = '<div class="location-block">' + contactHtml + directionsHtml + '</div>';
+  var isOddBlock = location.index % 2 != 0;
+  var blockClasses = '"location-block ' + ((isOddBlock) ? 'odd"' : 'even"');
+  var locationHtml = '<div class=' + blockClasses + '>' + contactHtml + directionsHtml + '</div>';
   return locationHtml
 }
 function makeContactHtml(location) {
@@ -30,6 +32,6 @@ function insertLocationBlock(location) {
 }
 function renderLocationList(locations) {
   // Clear innerhtml first
-  document.getElementById('locationList').innerHTML = '';
+  document.getElementById('locationList').innerHTML = '<h3 id="locationsHeader">Closest Locations</h3>';
   locations.forEach(insertLocationBlock);
 }

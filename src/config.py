@@ -1,12 +1,13 @@
-from src.models import Location
 from os import environ, getcwd, path
+from src.models import Location
 
 
 def load_locations_from_environ():
     location_mapping = {}
     for env_key, value in environ.items():
         if 'MAP_ID' in env_key:
-            location_mapping[value] = Location.load_locations_from_collection(value)
+            map_file_id = environ.get(env_key.replace('MAP_ID', 'FILE_ID'))
+            location_mapping[value] = Location.load_locations_from_collection(value, file_id=map_file_id)
     return location_mapping
 
 
