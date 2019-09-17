@@ -1,8 +1,30 @@
 <html>
   <head>
-    <link rel="stylesheet" href="../css/location_list_styles.css"></link>
+    <style>
+      .contact-detail {
+        display: block;
+      }
+      .location-name {
+        font-weight: bold;
+      }
+      .location-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        width: 640px;
+      }
+      .directions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 120px;
+      }
+      .navigate-button {
+
+      }
+    </style>
     <script type="text/javascript" src="../js/location_examples.js"></script>
-    <script type="text/javascript" src="../js/location_list_utils.js"></script>
   </head>
   <body>
     <h3>Location Block Example</h3>
@@ -20,10 +42,43 @@
         </div>
       </div>
     </div>
-    <div style="display: block;" id="locationList"></div>
+    <h3>Static Location List Example</h3>
+    <div id="locationList">'Cat'</div>
     <script type="text/javascript">
+      function makeLocationHtml(location) {
+        var contactHtml = makeContactHtml(location);
+        var directionsHtml = makeDirectionsHtml(location);
+        var locationHtml = '<div class="location-block">' + contactHtml + directionsHtml + '</div>';
+        return locationHtml
+      }
+      function makeContactHtml(location) {
+        var name = location.name;
+        var nameHtml = '<span class="contact-detail location-name">' + name + '</span>';
+        var street = location.street;
+        var streetHtml = '<span class="contact-detail">' + street + '</span>';
+        var city = location.city;
+        var state = location.state;
+        var zipcode = location.zipcode;
+        var stateHtml = '<span class="contact-detail">' + city + ', ' + state + ' ' + zipcode + '</span>';
+        var phone = location.phone;
+        var phoneHtml = '<span class="contact-detail">' + phone + '</span>';
+        return '<div>' + nameHtml + streetHtml + stateHtml + phoneHtml + '</div>';
+      }
+      function makeDirectionsHtml(location) {
+        var distance = location.distance;
+        var distanceHtml = '<span>' + distance.toString() + ' mi</span>';
+        var mapsUrl = location.url;
+        var navigateButton = '<a class="navigate-button" href="' + mapsUrl + '" target="_blank">Navigate</a>';
+        return '<div><div class="directions">' + distanceHtml + navigateButton + '</div></div>'
+      }
+      function insertLocationBlock(location) {
+        var locationHtml = makeLocationHtml(location);
+        document.getElementById('locationList').insertAdjacentHTML('beforeend', locationHtml);
+      }
       function renderLocationExamples() {
-        return renderLocationList(locations.locations)
+        // Clear innerhtml first
+        document.getElementById('locationList').innerHTML = '';
+        locations.locations.forEach(insertLocationBlock);
       }
       window.onload = renderLocationExamples;
     </script>
