@@ -6,3 +6,4 @@ gunicorn
 fuzzywuzzy
 python-Levenshtein
 geopy
+bugsnag[flask]
