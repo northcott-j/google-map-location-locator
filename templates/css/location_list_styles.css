@@ -1,0 +1,53 @@
+#locationList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+#locationsHeader {
+
+}
+.contact-detail {
+  display: block;
+}
+.location-name {
+  font-weight: bold;
+}
+.location-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  width: 80%;
+  max-width: 640px;
+  padding: 8px 10px;
+  border-radius: 5px;
+}
+.location-block.odd {
+  background-color: rgba(1,1,1, 0.2);
+}
+.location-block.even {
+  background-color: rgba(203,51,59, 0.6);
+}
+.directions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navigate-button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  text-align: center;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 5px;
+  border-radius: 5px;
+}

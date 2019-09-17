@@ -36,8 +36,8 @@ class Location:
         return Location(**location_details)
 
     @classmethod
-    def load_locations_from_collection(cls, map_id):
-        location_json = load_collection(map_id)
+    def load_locations_from_collection(cls, map_id, file_id=None):
+        location_json = load_collection(map_id, file_id=file_id)
         locations = [Location(**details) for loc_id, details in location_json.items()]
         return locations
 
@@ -65,8 +65,8 @@ class Location:
 
     @staticmethod
     def best_zoom_level(distance):
-        default_zoom = 12
-        adjustment = int(float(distance)/1.25)
+        default_zoom = 8
+        adjustment = int(float(distance)/0.6)
         return max(default_zoom - adjustment, 4)
 
 
