@@ -65,8 +65,8 @@ class Location:
 
     @staticmethod
     def best_zoom_level(distance):
-        default_zoom = 12
-        adjustment = int(float(distance)/1.25)
+        default_zoom = 8
+        adjustment = int(float(distance)/0.6)
         return max(default_zoom - adjustment, 4)
 
 

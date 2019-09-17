@@ -3,10 +3,6 @@ var locations = {
   'query': {
     'name': 'Northeastern University',
     'formatted_address': '360 Huntington Ave, Boston, MA 02115, USA',
-    'street': '360 Huntington Ave',
-    'city': 'Boston',
-    'state': 'MA',
-    'zipcode': '02115',
     'phone': '(617) 373-2000',
     'lat': 42.3398067,
     'lng': -71.08917170000001,

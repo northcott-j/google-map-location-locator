@@ -19,15 +19,14 @@ if mode == 'development':
 else:
     app.config.from_object(ProductionConfig)
 
-    #Allow CORS
-    CORS(app, supports_credentials=True)
-
     bugsnag.configure(
         api_key=app.config['BUGSNAG_API'],
         project_root=app.config['BUGSNAG_ROOT'],
     )
     handle_exceptions(app)
 
+#Allow CORS
+CORS(app, supports_credentials=True)
 
 # Initialize Controllers
 from .controllers.closest_locations import closest_locations

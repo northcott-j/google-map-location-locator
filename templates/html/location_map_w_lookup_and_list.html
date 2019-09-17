@@ -1,13 +1,15 @@
 <html>
   <head>
-    <style>
-    </style>
+    <link rel="stylesheet" href="../css/location_list_styles.css"></link>
     <script type="text/javascript" src="../js/.env.js"></script>
     <script type="text/javascript" src="../js/location_map_utils.js"></script>
+    <script type="text/javascript" src="../js/location_list_utils.js"></script>
   </head>
   <body>
     <input id="pac-input" style="width: 640px;" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
+    <iframe id="locationMap" style="display: block;" width="640" height="480"></iframe>
+    <div id="locationList"></div>
+    <div style="width: 640px; height: 480px; position: absolute; left: -10000px;" id="map"></div>
     <script>
       function initAutocomplete() {
         // Initializes the map centered on location specified in .env.js
@@ -41,20 +43,25 @@
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           var place = places[0];
-          var location = place.geometry.location;
-          if (place.geometry.viewport) {
-            // Only geocodes have viewport.
-            bounds.union(place.geometry.viewport);
-          } else {
-            bounds.extend(place.geometry.location);
-          }
-          map.fitBounds(bounds);
-          centerLocationMap(location.lat(), location.lng(), defaultZoom);
+          lookupClosestLocations(locationServiceUrl + placesMapId, place, function(response) {
+            var location = place.geometry.location;
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+            response.locations.forEach(function(responseLocation) {
+              bounds.extend({lat: responseLocation.lat, lng: responseLocation.lng})
+            });
+            map.fitBounds(bounds);
+            centerLocationMap(map.center.lat(), map.center.lng(), map.zoom);
+            renderLocationList(response.locations);
+          });
         });
       }
 
     </script>
-    <iframe id="locationMap" width="640" height="480"></iframe>
     <script type="text/javascript">
       var srcUrlBase = "https://maps.googleapis.com/maps/api/js";
       var srcUrlArgs = "libraries=places&callback=initAutocomplete";

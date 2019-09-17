@@ -1,0 +1,22 @@
+.contact-detail {
+  display: block;
+}
+.location-name {
+  font-weight: bold;
+}
+.location-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  width: 640px;
+}
+.directions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+}
+.navigate-button {
+
+}

@@ -1,3 +1,4 @@
+var locationServiceUrl = "http://localhost:5001/api/closest_locations/"
 var placesApiKey = "API Key to Embed Google Map";
 var placesMapId = "ID for your Public Places Map with locations";
 var defaultLat = "Starting Lat for map focus";
