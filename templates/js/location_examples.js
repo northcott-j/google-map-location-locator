@@ -3,6 +3,10 @@ var locations = {
   'query': {
     'name': 'Northeastern University',
     'formatted_address': '360 Huntington Ave, Boston, MA 02115, USA',
+    'street': '360 Huntington Ave',
+    'city': 'Boston',
+    'state': 'MA',
+    'zipcode': '02115',
     'phone': '(617) 373-2000',
     'lat': 42.3398067,
     'lng': -71.08917170000001,
@@ -19,8 +23,7 @@ var locations = {
     'lat': 42.3437379,
     'lng': -71.08965260000002,
     'url': 'https://maps.google.com/?cid=858335234578744410',
-    'distance': 0.5,
-    'index': 0
+    'distance': 0.5
   },
   'locations': [
     {
@@ -34,8 +37,7 @@ var locations = {
       'lat': 42.3437379,
       'lng': -71.08965260000002,
       'url': 'https://maps.google.com/?cid=858335234578744410',
-      'distance': 0.5,
-      'index': 0
+      'distance': 0.5
     },
     {
       'name': "Chi Sigma",
@@ -48,8 +50,7 @@ var locations = {
       'lat': 42.3278348,
       'lng': -71.0991507,
       'url': 'https://maps.google.com/?q=820+Parker+St,+Boston,+MA+02120,+USA&ftid=0x89e37987120c807d:0x9fa981b3a691af67',
-      'distance': 0.72,
-      'index': 1
+      'distance': 0.72
     },
     {
       'name': "Portsmouth Brewery",
@@ -62,8 +63,7 @@ var locations = {
       'lat': 43.07792449999999,
       'lng': -70.7577647,
       'url': 'https://maps.google.com/?cid=2896341337374084974',
-      'distance': 59.2,
-      'index': 2
+      'distance': 59.2
     },
     {
       'name': "TRH-BAR",
@@ -76,8 +76,7 @@ var locations = {
       'lat': 45.51485979999999,
       'lng': -73.57437970000001,
       'url': 'https://maps.google.com/?cid=15514103763919835179',
-      'distance': 313,
-      'index': 3
+      'distance': 313
     }
   ]
 }
