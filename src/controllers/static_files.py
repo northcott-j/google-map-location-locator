@@ -1,5 +1,5 @@
 from os.path import join
-from flask import Blueprint, send_from_directory, current_app
+from flask import Blueprint, send_from_directory, current_app, Response
 
 static_files = Blueprint('static_files', __name__)
 
@@ -27,6 +27,6 @@ def get_iframe_files(path: str):
             env_js_content = env_js.read()
             for env_key, value in current_app.config['IFRAME_ENV_JS'].items():
                 env_js_content = env_js_content.replace(f'<{env_key}>', value)
-            return env_js_content
+            return Response(env_js_content, mimetype='text/javascript')
     else:
         return send_from_directory(current_app.config['IFRAME_PATH'], path)
