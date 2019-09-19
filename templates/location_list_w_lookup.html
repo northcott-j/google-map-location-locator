@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/public/css/location_list_styles.css"></link>
+    <link rel="stylesheet" href="/public/css/location_map_w_list_styles.css"></link>
+    <script type="text/javascript" src=".env.js"></script>
+    <script type="text/javascript" src="/public/js/location_map_utils.js"></script>
+    <script type="text/javascript" src="/public/js/location_list_utils.js"></script>
+  </head>
+  <body>
+    <div id="locationsContainer">
+      <input id="pac-input" class="controls width-sync" type="text" placeholder="Search Box">\
+      <div id="locationList" class="width-sync"></div>
+      <div class="width-sync height-sync" style="position: absolute; left: -10000px;" id="map"></div>
+    </div>
+    <script>
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: parseFloat(defaultLat), lng: parseFloat(defaultLng)},
+          zoom: parseInt(defaultZoom),
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        searchBox.setBounds(map.getBounds());
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          var place = places[0];
+          lookupClosestLocations(locationServiceUrl + placesMapId, place, function(response) {
+            var location = place.geometry.location;
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+            response.locations.forEach(function(responseLocation) {
+              bounds.extend({lat: responseLocation.lat, lng: responseLocation.lng})
+            });
+            map.fitBounds(bounds);
+            renderLocationList(response.locations);
+          });
+        });
+      }
+
+    </script>
+    <script type="text/javascript">
+      var srcUrlBase = "https://maps.googleapis.com/maps/api/js";
+      var srcUrlArgs = "libraries=places&callback=initAutocomplete";
+      var srcUrl = srcUrlBase + "?key=" + placesApiKey + "&" + srcUrlArgs;
+      document.write("<script src='"+ srcUrl + "' async defer><\/script>");
+    </script>
+  </body>
+</html>

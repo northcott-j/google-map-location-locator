@@ -30,8 +30,10 @@ CORS(app, supports_credentials=True)
 
 # Initialize Controllers
 from .controllers.closest_locations import closest_locations
+from .controllers.static_files import static_files
 
 app.register_blueprint(closest_locations, url_prefix='/api/closest_locations')
+app.register_blueprint(static_files, url_prefix='/')
 
 # Register Error Handler
 base_class_exception = Exception
