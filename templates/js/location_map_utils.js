@@ -11,6 +11,7 @@ function centerLocationMap(lat, long, zoom) {
 
 function placeToQuery(place) {
   return {
+    'id': place.place_id,
     'name': place.name,
     'formatted_address': place.formatted_address,
     'street': place.address,
