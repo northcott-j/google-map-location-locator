@@ -4,7 +4,6 @@
 # Private Directories & Files
 env/
 .env
-.env.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
