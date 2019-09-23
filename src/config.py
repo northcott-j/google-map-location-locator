@@ -12,6 +12,8 @@ def load_locations_from_environ():
 
 
 def iframe_env_js_vars():
+    # TODO :: Autogenerate iframes folders similar to donloading collection files
+    # TODO :: Figure out how to include unique styling for these
     iframe_env_js = {
         'LOCATION_SERVICE_URL': environ['LOCATION_SERVICE_URL'],
         'GOOGLE_PLACES_API': environ['GOOGLE_PLACES_API']
